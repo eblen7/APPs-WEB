@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- =====================================================
+         ✏️ MODIFICAR AQUÍ (1/4): TÍTULO DE LA PESTAÑA DEL NAVEGADOR
+         ===================================================== -->
+    <title>Mis Dashboards</title>
+
+    <style>
+        /* =====================================================
+           ✏️ MODIFICAR AQUÍ (2/4): COLORES Y ESTILO GENERAL
+           Cambiando estos valores cambia el aspecto de toda la página.
+           ===================================================== */
+        :root {
+            /* Colores (modo claro) */
+            --color-fondo:        #f4f6f8;   /* fondo de la página */
+            --color-tarjeta:      #ffffff;   /* fondo de cada tarjeta */
+            --color-texto:        #1b2a22;   /* texto principal */
+            --color-texto-suave:  #5f6f66;   /* texto secundario */
+            --color-acento:       #2f7d4f;   /* color principal (verde) */
+            --color-borde:        #e1e6e3;   /* bordes finos */
+
+            /* Forma y tamaño */
+            --radio:              16px;      /* redondeo de las tarjetas */
+            --ancho-maximo:       720px;     /* ancho máximo del contenido */
+            --fuente: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        }
+
+        /* Colores automáticos para modo oscuro (se activa solo si el
+           dispositivo del usuario lo usa). Podés borrar este bloque
+           si no lo querés. */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --color-fondo:       #121a15;
+                --color-tarjeta:     #1b2620;
+                --color-texto:       #eef3ef;
+                --color-texto-suave: #9aaba1;
+                --color-acento:      #5fc08a;
+                --color-borde:       #2a372f;
+            }
+        }
+
+        /* =====================================================
+           ESTILOS INTERNOS (no hace falta tocar de acá para abajo
+           salvo que quieras un cambio más avanzado)
+           ===================================================== */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--fuente);
+            background: var(--color-fondo);
+            color: var(--color-texto);
+            min-height: 100vh;
+            padding: 56px 20px;
+            line-height: 1.5;
+        }
+
+        .contenedor {
+            max-width: var(--ancho-maximo);
+            margin: 0 auto;
+        }
+
+        /* Encabezado */
+        .encabezado { margin-bottom: 36px; }
+
+        .etiqueta {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--color-acento);
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: clamp(1.8rem, 5vw, 2.4rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+
+        .subtitulo { color: var(--color-texto-suave); }
+
+        /* Lista de tarjetas */
+        .lista {
+            display: grid;
+            gap: 14px;
+        }
+
+        .tarjeta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px 22px;
+            background: var(--color-tarjeta);
+            border: 1px solid var(--color-borde);
+            border-radius: var(--radio);
+            text-decoration: none;
+            color: inherit;
+            transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+        }
+
+        .tarjeta:hover,
+        .tarjeta:focus-visible {
+            transform: translateY(-3px);
+            border-color: var(--color-acento);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+            outline: none;
+        }
+
+        .icono {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            font-size: 1.5rem;
+            border-radius: 12px;
+            background: color-mix(in srgb, var(--color-acento) 14%, transparent);
+        }
+
+        .texto { flex: 1; min-width: 0; }
+
+        .texto h2 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .texto p {
+            font-size: 0.9rem;
+            color: var(--color-texto-suave);
+        }
+
+        .flecha {
+            font-size: 1.3rem;
+            color: var(--color-acento);
+            transition: transform .18s ease;
+        }
+
+        .tarjeta:hover .flecha { transform: translateX(4px); }
+
+        /* Pie de página */
+        .pie {
+            margin-top: 40px;
+            font-size: 0.8rem;
+            color: var(--color-texto-suave);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+
+        <!-- =====================================================
+             ✏️ MODIFICAR AQUÍ (3/4): TEXTOS DEL ENCABEZADO
+             ===================================================== -->
+        <header class="encabezado">
+            <span class="etiqueta">Panel principal</span>
+            <h1>Mis Paneles de Control</h1>
+            <p class="subtitulo">Hacé clic en el dashboard que quieras ver.</p>
+        </header>
+
+        <!-- =====================================================
+             ✏️ MODIFICAR AQUÍ (4/4): LISTA DE DASHBOARDS
+
+             Cada tarjeta de abajo es UN dashboard y tiene 4 campos
+             marcados con  ◀◀ EDITAR:
+
+               ① NOMBRE DEL ARCHIVO HTML → dentro de href="...".
+                  Debe ser idéntico al nombre real del archivo
+                  (mayúsculas, espacios y la extensión .html) y estar
+                  en la MISMA CARPETA que este index.html.
+
+               ② ÍCONO → el emoji dentro de <div class="icono">.
+
+               ③ TÍTULO → el texto dentro de <h2>.
+                  Es lo que se ve en grande en la tarjeta.
+
+               ④ DESCRIPCIÓN → el texto dentro de <p>.
+                  Línea chica debajo del título (podés borrarla).
+
+             PARA AGREGAR UN DASHBOARD: copiá una tarjeta completa
+             (desde <a ...> hasta </a>), pegala debajo de la última
+             y cambiá los 4 campos.
+             PARA QUITAR UNO: borrá la tarjeta completa.
+             ===================================================== -->
+        <main class="lista">
+
+            <!-- ───────── DASHBOARD 1 ───────── -->
+            <a class="tarjeta"
+               href="Diagnostico Analisis de Suelo.html"> <!-- ① ARCHIVO ◀◀ EDITAR -->
+                <div class="icono">🌱</div>              <!-- ② ÍCONO ◀◀ EDITAR -->
+                <div class="texto">
+                    <h2>Diagnóstico Análisis de Suelo</h2> <!-- ③ TÍTULO ◀◀ EDITAR -->
+                    <p>Interpretación de resultados de laboratorio</p> <!-- ④ DESCRIPCIÓN ◀◀ EDITAR -->
+                </div>
+                <span class="flecha">→</span>
+            </a>
+
+            <!-- ───────── DASHBOARD 2 ───────── -->
+            <a class="tarjeta"
+               href="Ventana de Pulverizacion.html"> <!-- ① ARCHIVO ◀◀ EDITAR -->
+                <div class="icono">💧</div>          <!-- ② ÍCONO ◀◀ EDITAR -->
+                <div class="texto">
+                    <h2>Ventana de Pulverización</h2> <!-- ③ TÍTULO ◀◀ EDITAR -->
+                    <p>Condiciones adecuadas para aplicar</p> <!-- ④ DESCRIPCIÓN ◀◀ EDITAR -->
+                </div>
+                <span class="flecha">→</span>
+            </a>
+
+        </main>
+
+        <!-- Pie de página (podés cambiar el texto o borrar todo el bloque) -->
+        <footer class="pie">
+            Herramientas de diagnóstico y manejo agronómico
+        </footer>
+
+    </div>
+</body>
+</html>
